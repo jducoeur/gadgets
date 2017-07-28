@@ -20,9 +20,9 @@ Gadgets *currently* requires the use of jQuery, so you will need to include that
 
 ## About Gadgets
 
-The Gadgets toolkit is mainly focused on extending the core notion of Scalatags -- being able to build HTML nodes using simple Scala functions -- and enabling you to build reusable higher-level Gadgets that fit into those functions naturally. Along the way, it provides tools for addressing specific nodes in your HTML graph easily (using the `GadgetRef` wrapper), and makes it easier to hook behavior into those Gadgets.
+The Gadgets toolkit is mainly focused on extending the core notion of Scalatags -- being able to build HTML nodes using simple Scala functions -- and enabling you to build reusable higher-level Gadgets that fit into those functions naturally. It also provides helpers for some of the common problems you encounter when building complex UIs.
 
-Gadgets is specifically *not* pure-functional in the way some frameworks are: it doesn't use a VDOM, and admits that it is closely related to the actual DOM. State is principally managed with Scala.Rx `Var`s, in a slightly old-fashioned data-binding model. In return, it is a bit "closer to the metal". Personally, I find it slight easier to understand how the code relates to what shows up on-screen, but it's very much a matter of taste.
+Gadgets is specifically *not* pure-functional in the way some frameworks are: it doesn't use a VDOM, and admits that it is closely connected to the actual DOM. State is principally managed with Scala.Rx `Var`s, in a slightly old-fashioned data-binding model. In return, it is a bit "closer to the metal". Personally, I find it slightly easier to understand how the code relates to what shows up on-screen, but it's very much a matter of taste.
 
 This library is just a toolkit, not a full-fledged framework. There *is* a full, opinionated framework in Querki, built on top of this, and I might at some point refactor that out and make it available as a separate library.
 
