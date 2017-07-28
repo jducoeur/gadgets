@@ -24,7 +24,7 @@ The Gadgets toolkit is mainly focused on extending the core notion of Scalatags 
 
 Gadgets is specifically *not* pure-functional in the way some frameworks are: it doesn't use a VDOM, and admits that it is closely connected to the actual DOM. State is principally managed with Scala.Rx `Var`s, in a slightly old-fashioned data-binding model. In return, it is a bit "closer to the metal". Personally, I find it slightly easier to understand how the code relates to what shows up on-screen, but it's very much a matter of taste.
 
-This library is just a toolkit, not a full-fledged framework. There *is* a full, opinionated framework in Querki, built on top of this, and I might at some point refactor that out and make it available as a separate library.
+This library is just a toolkit, not a full-fledged framework. There *is* a full, opinionated framework in Querki, built on top of this, and I might at some point refactor that out and make it available as a separate library. But the Gadgets are quite useful on their own, whether or not you are incorporating them into a framework.
 
 ## A Motivating Example
 
