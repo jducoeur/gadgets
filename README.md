@@ -1,5 +1,5 @@
 # gadgets
-A toolkit for web development, built on top of Scalatags and Scala.Rx
+A toolkit for web development, which enhances Scalatags and unifies it with Scala.Rx
 
 There are a million different options for doing Web development in Scala.js, including frameworks ranging from React to Suzaku to Bindings to Udash. All of them are lovely, and if you find one that suits you, use it.
 
