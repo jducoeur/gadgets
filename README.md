@@ -44,9 +44,6 @@ class TransactionRangeGadget(implicit ctx:Ctx.Owner) extends Gadget[dom.html.Div
     transactionsPane.foreach { tlist => tlist.updateWithDates(datePair.now) }
   }
   
-  val startPicker = GadgetRef[DatePickerGadget]
-  val endPicker = GadgetRef[DatePickerGadget]
-  
   val transactionsPane = GadgetRef[TransactionList]
     .whenRendered { tlist =>
       tlist.updateWithDates(datePair.now)
@@ -56,16 +53,16 @@ class TransactionRangeGadget(implicit ctx:Ctx.Owner) extends Gadget[dom.html.Div
     div(
       p("Please specify the date range to show:"),
       span(
-        startPicker <= new DatePickerGadget(startDate),
+        new DatePickerGadget(startDate),
         " through ",
-        endPicker <= new DatePickerGadget(endDate)
+        new DatePickerGadget(endDate)
       ),
       
       transactionsPane <= new TransactionList()
     )
 }
 ```
-That doesn't show everything, but it illustrates some of the most useful bits:
+That doesn't show everything (and isn't the only way you might organize this problem), but it illustrates some of the most useful bits:
 
 * You can freely mix Gadgets with HTML nodes in your Scalatags
 * Gadgets can and frequently do manage data-binding with Scala.Rx
