@@ -1,2 +1,8 @@
 *.class
 *.log
+project/
+.classpath
+.history
+.project
+target/
+.settings/
