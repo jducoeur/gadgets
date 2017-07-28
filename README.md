@@ -66,7 +66,7 @@ That doesn't show everything (and isn't the only way you might organize this pro
 
 * You can freely mix Gadgets with HTML nodes in your Scalatags
 * Gadgets can and frequently do manage data-binding with Scala.Rx
-* You can define class members for particular nodes in the Scalatags tree, and access them elsewhere
+* You can define class members for particular nodes in the Scalatags tree, and access them elsewhere (in this case, the `transactionsPane`) -- this makes it much easier to build complex, inter-related UIs
 
 ## Building a Gadget
 
