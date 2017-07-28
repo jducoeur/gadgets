@@ -7,7 +7,7 @@ However, a lot of folks decide to work at a lower level: in particular, they fin
 
 [Querki](https://www.querki.net) is one of the oldest shipping products built on Scala.js; its client predates pretty much all of the major frameworks. So I wound up in just that position, building something myself out of Scalatags and Scala.Rx, and puzzling out how to use them together to produce a reasonably serious FRP framework. This library is the result.
 
-### Using Gadgets in Your Application
+## Using Gadgets in Your Application
 
 To use Gadgets in your Scala.js project, include it as usual:
 ```
@@ -18,7 +18,7 @@ Gadgets has transitive dependencies on [Scalatags](https://index.scala-lang.org/
 
 Gadgets *currently* requires the use of jQuery, so you will need to include that in your top-level HTML files. The [jquery-facade](https://index.scala-lang.org/jducoeur/jquery-facade) is pulled in transitively. I plan to phase out the use of jQuery eventually, in favor of sQuery, but that's a long-term project.
 
-### About Gadgets
+## About Gadgets
 
 The Gadgets toolkit is mainly focused on extending the core notion of Scalatags -- being able to build HTML nodes using simple Scala functions -- and enabling you to build reusable higher-level Gadgets that fit into those functions naturally. Along the way, it provides tools for addressing specific nodes in your HTML graph easily (using the `GadgetRef` wrapper), and makes it easier to hook behavior into those Gadgets.
 
@@ -26,12 +26,89 @@ Gadgets is specifically *not* pure-functional in the way some frameworks are: it
 
 This library is just a toolkit, not a full-fledged framework. There *is* a full, opinionated framework in Querki, built on top of this, and I might at some point refactor that out and make it available as a separate library.
 
-### Building a Gadget
+## A Motivating Example
 
-### GadgetRef
+Here's an example of a hypothetical Gadget -- in this case, a pane composed of a date range, and a section that displays the results of a server query for that date range. It's not fully-fleshed out (and as of this writing might have bugs), but illustrates what a typical mid-level Gadget looks like:
+```
+import org.scalajs.dom
+import org.querki.gadgets._
+import rx._
+import scalatags.JsDom.all._
 
-### Using Scala.Rx in Gadgets
+class TransactionRangeGadget(implicit ctx:Ctx.Owner) extends Gadget[dom.html.Div] {
+  val startDate = Var[Date](Date.now)
+  val endDate = Var[Date](Date.now)
+  val datePair = Rx { (startDate(), endDate()) }
+  
+  datePair.triggerLater {
+    transactionsPane.foreach { tlist => tlist.updateWithDates(datePair.now) }
+  }
+  
+  val startPicker = GadgetRef[DatePickerGadget]
+  val endPicker = GadgetRef[DatePickerGadget]
+  
+  val transactionsPane = GadgetRef[TransactionList]
+    .whenRendered { tlist =>
+      tlist.updateWithDates(datePair.now)
+    }
 
-### Version History
+  def doRender() =
+    div(
+      p("Please specify the date range to show:"),
+      span(
+        startPicker <= new DatePickerGadget(startDate),
+        " through ",
+        endPicker <= new DatePickerGadget(endDate)
+      ),
+      
+      transactionsPane <= new TransactionList()
+    )
+}
+```
+That doesn't show everything, but it illustrates some of the most useful bits:
+
+* You can freely mix Gadgets with HTML nodes in your Scalatags
+* Gadgets can and frequently do manage data-binding with Scala.Rx
+* You can define class members for particular nodes in the Scalatags tree, and access them elsewhere
+
+## Building a Gadget
+
+### TODO
+
+* Choose a richer example: start simple, and build it up in the later sections
+* Relationship of Gadgets to Elements
+* Gadgets are (essentially) live Scala code attached to the DOM
+* ManagedFrag, and the key difference between Gadgets and Scalatags: Gadgets actually maintain the relationship to the DOM
+* The meaning of "render" in ManagedFrag
+* The onCreate() and onRendered() hooks
+* Accessing the tree via parentOptRx
+* GadgetLookup, and finding Gadgets from the DOM elements
+* Some of the above probably belongs in an "Advanced Concepts" section
+
+## GadgetRef
+
+### TODO
+
+* The point of GadgetRef: to let you build a readable HTML tree, and easily refer to Gadgets inside it
+* A holder to a reference to a Gadget in the tree
+* The all-important opt member
+* map, the iffily-named flatMap, and foreach
+* mapOrElse, mapElem
+* isDefined and isEmpty
+* assignment: the <= and <~ operators
+* whenRendered (and maybe whenSet, although make clear that that's usually not right)
+* Gadget.of for hooking plain HTML nodes
+
+## Using Scala.Rx in Gadgets
+
+### TODO
+
+* Proper use of Rx vs Var as parameters -- consume vs produce
+* Talk about `Ctx.Owner`, and how to use it -- thread it down from the top.
+* RxAttr, to let you use Rx'es as attribute values
+* RxEmptyable, once we spruce that typeclass up and promote it into the library
+* Eventually, docs for the various common Rx utility types
+
+## Version History
 
 * **0.1** -- Initial release. This is called 0.1 because it's incomplete: it only contains the basics, none of the actual Gadgets that we use in Querki yet. But what is here is pretty battle-tested, and has been in use in Querki for a couple of years now.
