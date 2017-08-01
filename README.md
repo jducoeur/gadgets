@@ -11,7 +11,7 @@ However, a lot of folks decide to work at a lower level: in particular, they fin
 
 To use Gadgets in your Scala.js project, include it as usual:
 ```
-libraryDependencies += "org.querki" %%% "gadgets" % "0.1"
+libraryDependencies += "org.querki" %%% "gadgets" % "0.2"
 ```
 
 Gadgets has transitive dependencies on [Scalatags](https://index.scala-lang.org/lihaoyi/scalatags) and [Scala.Rx](https://index.scala-lang.org/lihaoyi/scala.rx), as well as [sQuery](https://index.scala-lang.org/jducoeur/squery) and of course the [DOM facade](https://index.scala-lang.org/scala-js/scala-js-dom). All of these will be pulled in automatically.
@@ -108,4 +108,5 @@ That doesn't show everything (and isn't the only way you might organize this pro
 
 ## Version History
 
+* **0.2** -- Added the RxDiv and RxTextFrag components, and the RxEmptyable typeclass.
 * **0.1** -- Initial release. This is called 0.1 because it's incomplete: it only contains the basics, none of the actual Gadgets that we use in Querki yet. But what is here is pretty battle-tested, and has been in use in Querki for a couple of years now.
