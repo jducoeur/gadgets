@@ -9,7 +9,10 @@ import org.querki.jquery._
  * convenience import org.querki.gadgets._, which pulls in all the commonly-useful
  * types. Look in subpackages for the details and power features.
  */
-package object gadgets extends reactive.Implicits {
+package object gadgets 
+  extends reactive.Implicits
+     with reactive.EmptyableCoreImplicits
+{
   type ManagedFrag[Output <: dom.Node] = core.ManagedFrag[Output]
   type Gadget[Output <: Element] = core.Gadget[Output]
   val Gadget = core.Gadget
@@ -20,4 +23,8 @@ package object gadgets extends reactive.Implicits {
   
   type AnyNode <: dom.Node
   type AnyFrag = ManagedFrag[AnyNode]
+  
+  type RxDiv = components.RxDiv
+  val RxDiv = components.RxDiv
+  type RxTextFrag = components.RxTextFrag
 }

@@ -5,7 +5,7 @@ name := "Gadgets"
 
 normalizedName := "gadgets"
 
-version := "0.1"
+version := "0.2"
 
 organization := "org.querki"
 
