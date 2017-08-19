@@ -28,7 +28,7 @@ This library is just a toolkit, not a full-fledged framework. There *is* a full,
 
 ## A Motivating Example
 
-Here's an example of a hypothetical Gadget -- in this case, a pane composed of a date range, and a section that displays the results of a server query for that date range. It's not fully-fleshed out (and as of this writing might have bugs), but illustrates what a typical mid-level Gadget looks like:
+Here's an example of a hypothetical Gadget -- in this case, a pane composed of a date range, and a section that displays the results of a server query for that date range. It's not fully-fleshed out (and as of this writing might have bugs), but illustrates what a typical mid-level Gadget looks like. Note that this is just an illustration of a partial program -- a full working example would require several other Gadgets, such as TransactionList.
 ```
 import org.scalajs.dom
 import org.querki.gadgets._
