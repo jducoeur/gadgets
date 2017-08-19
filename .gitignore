@@ -1,8 +1,10 @@
 *.class
 *.log
-project/
 .classpath
 .history
 .project
 target/
 .settings/
+bin/
+*~
+.cache-main
