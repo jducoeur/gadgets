@@ -108,5 +108,6 @@ That doesn't show everything (and isn't the only way you might organize this pro
 
 ## Version History
 
+* **0.3** -- Significant changes to the functions exposed by `GadgetRef`, because the signatures of `map()` and `flatMap()` were kind of scungy, and didn't do what you typically want with the current version of Scala.Rx. The old functions still exists as `mapNow()` and `flatMapNow()`, to signify their "now-ness", but there are also `mapRx()` and `flatMapRx()`, which produce proper Rx's and work as you would expect. Also added `mapRxOrElse()` and `flatMapRxOrElse()` as boilerplate-killers. 
 * **0.2** -- Added the RxDiv and RxTextFrag components, and the RxEmptyable typeclass.
 * **0.1** -- Initial release. This is called 0.1 because it's incomplete: it only contains the basics, none of the actual Gadgets that we use in Querki yet. But what is here is pretty battle-tested, and has been in use in Querki for a couple of years now.
